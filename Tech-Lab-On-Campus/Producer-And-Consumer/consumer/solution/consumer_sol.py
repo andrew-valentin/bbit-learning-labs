@@ -33,7 +33,6 @@ class mqConsumer(mqConsumerInterface):
         self.channel.basic_consume(
             self.queue_name, on_message_callback=self.on_message_callback, auto_ack=False
         )
-        self.channel.basic_consume()
         
 
     def on_message_callback(
