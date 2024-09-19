@@ -39,17 +39,13 @@ class mqConsumer(mqConsumerInterface):
         self, channel, method_frame, header_frame, body
     ) -> None:
         channel.basic_ack(method_frame.delivery_tag, False)
-        
-        message = json.loads(body)
-        print(message)
-
-
+   
+        print(body)
         
 
     def startConsuming(self) -> None:
         print("[*] Waiting for messages. To exit press CTRL+C")
 
-    
         self.channel.start_consuming()
         
     
