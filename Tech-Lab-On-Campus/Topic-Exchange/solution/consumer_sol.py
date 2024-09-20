@@ -22,7 +22,7 @@ class mqConsumer(mqConsumerInterface):
 
         self.channel.queue_declare(queue= self.queue_name)
 
-        self.exchange = self.channel.exchange_declare(exchange=self.exchange_name)
+        self.exchange = self.channel.exchange_declare(exchange= self.exchange_name, exchange_type='topic')
 
         self.channel.queue_bind(
             queue= self.queue_name,
@@ -33,7 +33,6 @@ class mqConsumer(mqConsumerInterface):
         self.channel.basic_consume(
             self.queue_name, on_message_callback=self.on_message_callback, auto_ack=False
         )
-        
 
     def on_message_callback(
         self, channel, method_frame, header_frame, body
